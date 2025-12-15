@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: unset;
+    font-weight: unset;
+  }
+
+  :root {
+    --background: 0, 0%, 96%;
+    --foreground: 198, 88%, 13%;
+
+    --primary-gray: 0, 0%, 96%;
+    --primary-red: 356, 95%, 46%;
+    --primary-orange: 36, 98%, 48%;
+    --primary-yellow: 52, 100%, 51%;
+    --primary-green: 146, 56%, 43%;
+    --primary-olive: 96, 23%, 41%;
+    --primary-blue: 203, 80%, 43%;
+    --primary-purple: 254, 31%, 49%;
+    --primary-magenta: 311, 45%, 41%;
+
+    --card: 240 5% 96%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 6% 80%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.2rem;
+
+    --success: 196 52% 74%;
+    --warning: 34 89% 85%;
+    --error: 10 100% 86%;
+  }
+
+  /* [data-theme='dark'] {
+    --background: white;
+    --foreground: 210 40% 98%;
+
+    --card: 0 0% 4%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0, 0%, 15%, 0.8;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    --success: 196 100% 14%;
+    --warning: 34 51% 25%;
+    --error: 10 39% 43%;
+  } */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
+  }
+
+  /* Fix for scrollbar disappearance on dropdown hover */
+  html {
+    overflow-y: scroll;
+  }
+}
+
+html {
+  opacity: 0;
+}
+
+html[data-theme="dark"],
+html[data-theme="light"] {
+  opacity: initial;
+}
+
+@layer utilities {
+  @keyframes scroll-down {
+    0% {
+      transform: translateY(-50%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
+  @keyframes scroll-up {
+    0% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+  .animate-scroll-down {
+    animation: scroll-down 20s linear infinite;
+  }
+  .animate-scroll-up {
+    animation: scroll-up 20s linear infinite;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Prevent layout shift when dropdown opens */
+  .no-shift {
+    margin-right: calc(100vw - 100%);
+  }
+
+  /* Utility to make bold text always black */
+  .bold-black strong {
+    color: #000000 !important;
+  }
+
+  /* Edge fade mask for horizontal marquee (transparent edges) */
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 20%,
+      rgba(0, 0, 0, 1) 80%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 20%,
+      rgba(0, 0, 0, 1) 80%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+}
+
+@layer components {
+  /* Override the default prose bold style to make it black */
+  .prose
+    :where(strong):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    color: #000000;
+    font-weight: 600;
+  }
+
+  .prose-white {
+    &
+      :where(
+        p,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        strong,
+        em,
+        li,
+        ul,
+        ol,
+        blockquote,
+        a,
+        table,
+        thead,
+        tbody,
+        tr,
+        th,
+        td
+      ) {
+      color: white !important;
+    }
+
+    /* Make sure bold text can still be black in prose-white context when needed */
+    &.keep-bold-black :where(strong) {
+      color: #000000 !important;
+    }
+
+    & :where(a) {
+      text-decoration: underline;
+    }
+
+    & :where(blockquote) {
+      border-color: white !important;
+    }
+
+    & :where(code) {
+      color: white !important;
+      background-color: rgba(255, 255, 255, 0.1) !important;
+    }
+  }
+  .confirmation-message,
+  .confirmation-message * {
+    color: #111 !important;
+  }
+}
