@@ -12,13 +12,13 @@ import { SuitableApplicationsBlock } from "@/blocks/SuitableApplications/Compone
 import { FAQBlock } from "@/blocks/FAQ/Component";
 import { FeatureBlock } from "@/blocks/FeatureBlock/Component";
 import { TextWithImageBlock } from "@/blocks/TextWithImage/Component";
-
 import { ProcessBlock } from "@/blocks/Process/Component";
 import { CardsCarouselBlock } from "./CardsCarouselBlock/Component";
 import { MarqueeBlock } from "./MarqueeBlock/Component";
 import { ImageCarouselBlock } from "./ImageCarousel/Component";
 import { TeamSectionBlock } from "./TeamSection/Component";
 import { ReviewsBlock } from "./Reviews/Component";
+import { FeatureCard } from '@huce-digital/sample-block'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -37,6 +37,7 @@ const blockComponents = {
   marquee: MarqueeBlock,
   teamSection: TeamSectionBlock,
   reviews: ReviewsBlock,
+  featureCard: FeatureCard,
 };
 
 export const RenderBlocks: React.FC<{
