@@ -1,200 +1,72 @@
-import tailwindcssAnimate from "tailwindcss-animate";
-import typography from "@tailwindcss/typography";
+import type { Config } from "tailwindcss";
 
-/** @type {import('tailwindcss').Config} */
-const config = {
+const config: Config = {
+  darkMode: ["class"],
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
-  darkMode: ["selector", '[data-theme="dark"]'],
-  plugins: [tailwindcssAnimate, typography],
-  prefix: "",
-  safelist: [
-    "lg:col-span-4",
-    "lg:col-span-6",
-    "lg:col-span-8",
-    "lg:col-span-12",
-    "border-border",
-    "bg-card",
-    "border-error",
-    "bg-error/30",
-    "border-success",
-    "bg-success/30",
-    "border-warning",
-    "bg-warning/30",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/blocks/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/heros/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    container: {
-      center: true,
-      padding: {
-        "2xl": "2rem",
-        DEFAULT: "1rem",
-        lg: "2rem",
-        md: "2rem",
-        sm: "1rem",
-        xl: "2rem",
-      },
-      screens: {
-        "2xl": "86rem",
-        lg: "64rem",
-        md: "48rem",
-        sm: "40rem",
-        xl: "80rem",
-      },
-    },
     extend: {
-      backgroundImage: {
-        "custom-gradient":
-          "linear-gradient(to right, hsl(var(--primary-blue)), hsl(var(--primary-purple)))",
-        "overlay-gradient":
-          "linear-gradient(to right, rgb(4, 45, 62, 0.9), rgba(66, 92, 107, 0.6))",
+      colors: {
+        primary: {
+          DEFAULT: "#3b82f6",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "#8b5cf6",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        accent: {
+          DEFAULT: "#10b981",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        chart: {
+          "1": "hsl(var(--chart-1))",
+          "2": "hsl(var(--chart-2))",
+          "3": "hsl(var(--chart-3))",
+          "4": "hsl(var(--chart-4))",
+          "5": "hsl(var(--chart-5))",
+        },
       },
-
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+      fontFamily: {
+        sans: ["inter", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      colors: {
-        primaryGray: "hsl(var(--primary-gray))",
-        primaryRed: "hsl(var(--primary-red))",
-        primaryOrange: "hsl(var(--primary-orange))",
-        primaryYellow: "hsl(var(--primary-yellow))",
-        primaryGreen: "hsl(var(--primary-green))",
-        primaryOlive: "hsl(var(--primary-olive))",
-        primaryBlue: "hsl(var(--primary-blue))",
-        primaryPurple: "hsl(var(--primary-purple))",
-        primaryMagenta: "hsl(var(--primary-magenta))",
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        background: "hsl(var(--background))",
-        border: "hsla(var(--border))",
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        foreground: "hsl(var(--foreground))",
-        input: "hsl(var(--input))",
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        ring: "hsl(var(--ring))",
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        success: "hsl(var(--success))",
-        error: "hsl(var(--error))",
-        warning: "hsl(var(--warning))",
-      },
-      fontFamily: {
-        sans: ["var(--font-open-sans)"],
-        inter: ["var(--font-inter)"],
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-      },
-      typography: () => ({
-        DEFAULT: {
-          css: [
-            {
-              "--tw-prose-body": "hsl(var(--foreground))",
-              "--tw-prose-headings": "hsl(var(--foreground))",
-              "--tw-prose-bold": "#000000",
-              color: "hsl(var(--foreground))",
-              "h1, h2, h3, h4, h5, h6": {
-                color: "hsl(var(--foreground))",
-                fontWeight: "normal",
-              },
-              strong: {
-                color: "#000000",
-                fontWeight: "600",
-              },
-              h1: {
-                fontWeight: "normal",
-                marginBottom: "0.25em",
-                fontSize: "3.2rem",
-              },
-              h2: {
-                fontSize: "2rem",
-                fontWeight: "normal",
-                marginTop: "1rem",
-              },
-            },
-          ],
-        },
-        base: {
-          css: [
-            {
-              h1: {
-                fontSize: "8rem",
-              },
-              h2: {
-                fontSize: "5rem",
-                fontWeight: 600,
-              },
-            },
-          ],
-        },
-        md: {
-          css: [
-            {
-              h1: {
-                fontSize: "6rem",
-              },
-              h2: {
-                fontSize: "3rem",
-              },
-            },
-          ],
-        },
-        xl: {
-          css: [
-            {
-              h1: {
-                fontSize: "6rem",
-                marginBottom: "2rem",
-                marginTop: "1rem",
-              },
-              h2: {
-                fontSize: "4rem",
-                marginTop: "0",
-              },
-            },
-          ],
-        },
-      }),
     },
   },
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("tailwindcss-animate"),
+  ],
 };
 
 export default config;
